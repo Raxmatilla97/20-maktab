@@ -1,0 +1,10 @@
+name: Yangilik
+form: $/shohrux/yangiliklar/models/yangilik/fields.yaml
+modelClass: Shohrux\Yangiliklar\Models\Yangilik
+defaultRedirect: shohrux/yangiliklar/yangilik
+create:
+    redirect: 'shohrux/yangiliklar/yangilik/update/:id'
+    redirectClose: shohrux/yangiliklar/yangilik
+update:
+    redirect: shohrux/yangiliklar/yangilik
+    redirectClose: shohrux/yangiliklar/yangilik

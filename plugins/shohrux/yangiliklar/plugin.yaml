@@ -1,0 +1,16 @@
+plugin:
+    name: 'shohrux.yangiliklar::lang.plugin.name'
+    description: 'shohrux.yangiliklar::lang.plugin.description'
+    author: Shohrux
+    icon: oc-icon-bank
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'Maktab yangiliklari'
+        url: shohrux/yangiliklar/yangilik
+        icon: icon-newspaper-o
+        sideMenu:
+            side-menu-item:
+                label: Yangiliklar
+                url: shohrux/yangiliklar/yangilik
+                icon: icon-sitemap

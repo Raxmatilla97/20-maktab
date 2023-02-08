@@ -1,0 +1,44 @@
+[builderList]
+modelClass = "Raxmatilla\LibrarySettings\Models\Slayders"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "created_at"
+sortDirection = "desc"
+==
+<div id="tg-homeslider" class="tg-homeslider tg-homeslidervtwo tg-haslayout owl-carousel">			
+
+    {% set records = builderList.records %}
+    {% for record in records %}
+    <div class="item" data-vide-bg="poster:{{record.image_baground.path}}" data-vide-options="position: 0% 50%">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-10 col-lg-push-1">
+    				<div class="tg-slidercontent">
+    					<figure class="tg-authorimg"><img src="{{ record.image_small.path }}" alt="image description"></figure>
+    					<h1>{{ record.title }}</h1>
+    					<div class="tg-description">
+    						<p>{{ record.small_text }}</p>
+    					</div>
+    					<div class="tg-btns">
+                        {% if record.button_1 %}
+    						<a class="tg-btn tg-active" href="{{record.button_1}}">{{"Tanishib chiqish"|_}}</a>
+                         {% endif %}
+                         {% if record.button_2 %}
+    						<a class="tg-btn" href="{{record.button_2}}">{{"Sahifaga o'tish"|_}}</a>
+                         {% endif %}
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    {% else %}
+       <li class="no-data">{{ noRecordsMessage }}</li>
+    {% endfor %}
+
+    </div>

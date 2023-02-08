@@ -1,0 +1,9 @@
+columns:
+    yangilik_nomi:
+        label: 'Yangiliklar nomi'
+        type: text
+        searchable: true
+    created_at:
+        label: 'Yaratilgan vaqt'
+        type: datetime
+        sortable: true

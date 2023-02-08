@@ -1,0 +1,39 @@
+[viewBag]
+==
+<?php
+function onStart()
+{
+$this['users'] = Backend\Models\User::all();
+}
+?>
+==
+{# {{ d(users)}} #}
+<section class="tg-sectionspace tg-haslayout">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="tg-sectionhead">
+								<h2><span>Strong Minds Behind Us</span>Most Popular Authors</h2>
+								<a class="tg-btn" href="">View All</a>
+							</div>
+						</div>
+						<div id="tg-authorsslider" class="tg-authors tg-authorsslider owl-carousel">
+                              {% for user in users %}
+                            <div class="item tg-author">
+                            
+								<figure><a href=""><img src="{{ user.avatar.path }}" alt="image description"></a></figure>
+								<div class="tg-authorcontent">
+									<h2><a href="">{{ user.full_name }}</a></h2>
+									<span>21,658 Published Books</span>
+									<ul class="tg-socialicons">
+										<li class="tg-facebook"><a href=""><i class="fa fa-facebook"></i></a></li>
+										<li class="tg-twitter"><a href=""><i class="fa fa-twitter"></i></a></li>
+										<li class="tg-linkedin"><a href=""><i class="fa fa-linkedin"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</section>

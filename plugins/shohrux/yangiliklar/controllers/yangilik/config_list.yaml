@@ -1,0 +1,12 @@
+list: $/shohrux/yangiliklar/models/yangilik/columns.yaml
+modelClass: Shohrux\Yangiliklar\Models\Yangilik
+title: Yangilik
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'shohrux/yangiliklar/yangilik/update/:id'

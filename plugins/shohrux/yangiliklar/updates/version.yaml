@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table shohrux_yangiliklar_'
+    - builder_table_create_shohrux_yangiliklar_.php

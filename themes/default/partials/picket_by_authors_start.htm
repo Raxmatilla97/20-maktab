@@ -1,0 +1,77 @@
+[builderList]
+modelClass = "Raxma\Majmualar\Models\Majmualar"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "created_at"
+sortDirection = "desc"
+==
+{% set records = builderList.records %}
+<section class="tg-sectionspace tg-haslayout" style="padding-bottom: 25px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="tg-sectionhead">
+								<h2><span>{{"Professor - o'qituvchilar tomonidan joylab boriladigan elektron"|_}}</span>{{"Majmualar"|_}}</h2>
+								<a class="tg-btn" href="javascript:void(0);">{{"Barchasini ko'rish"|_}}</a>
+							</div>
+						</div>
+						<div id="tg-pickedbyauthorslider" class="tg-pickedbyauthor tg-pickedbyauthorslider owl-carousel">
+
+							
+                            {# Majmua Itemlari boshlanishi #}
+                            {% for record in records %}
+							<div class="item">
+								<div class="tg-postbook">
+									<figure class="tg-featureimg">
+										<div class="tg-bookimg">
+											<div class="tg-frontcover"><img src="{{ record.image.path }}" alt="image description"></div>
+										</div>
+										<div class="tg-hovercontent">
+											
+											<strong class="tg-bookpage">{{"Fakultet"|_}}: {{record.fakultetlar.title}}</strong>
+											<strong class="tg-bookcategory">{{"Kafedra"|_}}: {{record.kafedralar.title}}</strong>
+											<strong class="tg-bookpage">{{"Fan"|_}}: {{record.fanlar.title}}</strong>
+											<strong class="tg-bookcategory">{{"Manba"|_}}: {{record.manbalar.title}}</strong>
+											<strong class="tg-bookprice">{{"Sana"|_}}: {{record.created_at|date("Y-m-d")}}</strong>
+											<div class="tg-ratingbox"><span class="tg-stars"><span></span></span></div>
+										</div>
+									</figure>
+									<div class="tg-postbookcontent">
+										<div class="tg-booktitle">
+											<h3><a href="javascript:void(0);">{{record.title}}</a></h3>
+										</div>
+										<span class="tg-bookwriter">{{"Mualif"|_}}: <a href="javascript:void(0);">{{record.user.full_name}}</a></span>
+										<a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
+											<i class="fa fa-eye"></i>
+											<em>{{"Majmuaq bilan tanishish"|_}}</em>
+										</a>
+									</div>
+								</div>
+							</div>
+							{% else %}
+
+							{% endfor %}
+                            {# Majmua utemlari tugashi #}
+						
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<style>
+			.tg-pickedbyauthor .tg-postbook .tg-bookimg:before {
+			    top: 0;
+			    z-index: 4;
+			    left: -10px;
+			    content: '';
+			    width: 20px;
+			    height: 100%;
+			    background: #004b8c;
+			    position: absolute;
+			}
+			</style>

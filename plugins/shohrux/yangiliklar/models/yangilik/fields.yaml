@@ -1,0 +1,32 @@
+fields:
+    yangilik_nomi:
+        label: 'Yangilik nomi'
+        span: auto
+        required: 1
+        type: text
+    yangilik_manzili:
+        label: 'Yangilik manzili'
+        span: auto
+        preset:
+            field: yangilik_nomi
+            type: slug
+        type: text
+    created_at:
+        label: 'Yaratilgan vaqt'
+        mode: datetime
+        span: auto
+        type: datepicker
+    images_media:
+        label: 'Images media'
+        mode: image
+        imageWidth: '200'
+        span: auto
+        type: mediafinder
+tabs:
+    fields:
+        content:
+            label: 'Asosiy qism'
+            size: huge
+            span: full
+            type: richeditor
+            tab: 'Asosiy yangiliklar qismi'

@@ -1,0 +1,85 @@
+[builderList]
+modelClass = "Raxmatilla\Library\Models\Resurslar"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "created_at"
+sortDirection = "desc"
+==
+<section class="tg-sectionspace tg-haslayout">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="tg-sectionhead">
+								<h2><span>{{"Chirchiq Davlat Pedagogika Universitetning Elektron Katalogi"|_}}</span>So'ngi joylashtirilgan elektron resurslar</h2>
+								<a class="tg-btn" href="javascript:void(0);">{{"Barchasini ko'rish"|_}}</a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div id="tg-bestsellingbooksslider" class="tg-bestsellingbooksslider tg-bestsellingbooks owl-carousel">
+
+							{# Kitobning ITEM qismi boshlanishi #}
+							
+							{% set records = builderList.records %}
+             
+								{% for record in records %}			
+									<div class="item">
+										<div class="tg-postbook">
+											<figure class="tg-featureimg">
+												<div class="tg-bookimg">
+													<div class="tg-frontcover"><img src="{{record.image.path}}" alt="image description"></div>
+													<div class="tg-backcover"><img src="{{record.image.path}}" alt="image description"></div>
+												</div>
+												<a class="tg-btnaddtowishlist" href="javascript:void(0);">
+													<i class="icon-heart"></i>
+													<span>{{"Keyinroq ko'rish"|_}}</span>
+												</a>
+											</figure>
+											<div class="tg-postbookcontent">
+												<ul class="tg-bookscategories">
+
+													<li><a href="javascript:void(0);">{{record.bolimlar.title}}</a></li>
+												</ul>
+												<div class="tg-themetagbox"><span style="text-transform: inherit;" class="tg-themetag">Elektron (PDF) versiyasi mavjud</span></div>
+												<div class="tg-booktitle">
+													<h3><a href="javascript:void(0);">{{record.title}}</a></h3>
+												</div>
+												<span class="tg-bookwriter">Chop etilgan: 
+												<a href="javascript:void(0);" style="font-weight: bold;">{{record.publish_year|date("Y")}}</a></span>
+												<span class="tg-stars"><span></span></span>
+												{% if record.is_sotuvda %}
+												<span class="tg-bookprice">
+													<ins>{{record.hozirgi_narx}}</ins>
+													<del>{{record.oldingi_narx}}</del>
+												</span>
+												{% endif %}
+												{% if record.is_sotuvda %}
+												<a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
+													<i class="fa fa-shopping-basket"></i>
+													<em>{{"Sotib olish"|_}}</em>
+												</a>
+												{% endif %}
+
+												{% if record.is_sotuvda == false %}
+												<a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
+													<i class="fa fa-eye"></i>
+													<em>{{"Kitobni ko'rish"|_}}</em>
+												</a>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								{% else %}
+					               {% partial 'kichiq_bolaklar_uchun/qism_forntend_404_kitob' %}
+					      		{% endfor %}
+								{# Kitobning ITEM Qismi #}
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>

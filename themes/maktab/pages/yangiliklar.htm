@@ -1,0 +1,87 @@
+title = "Yangiliklar"
+layout = "maktab-layout"
+url = "/yangiliklar"
+
+[builderList]
+modelClass = "Shohrux\Yangiliklar\Models\Yangilik"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "yangilik_nomi"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "created_at"
+sortDirection = "desc"
+==
+{% set records = builderList.records %}
+{% set displayColumn = builderList.displayColumn %}
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+{% set detailsPage = builderList.detailsPage %}
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+
+
+
+<div id="oqituvchilar" class="container set-pad">
+    <div class="row text-center">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+            <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">Yangiliklar</h1>
+            <p data-scroll-reveal="enter from the bottom after 0.3s" >
+        </div>
+    </div>
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+      {% for record in records %}
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img class="card-img-top"  alt="Thumbnail" style="height: 225px; width: 100%; display: block;" src="{{ record.images_media|media }}" data-holder-rendered="true">
+          <div class="card-body">
+            <p style="margin-left: 0px; margin-top: 10px;" class="card-text">{{record.yangilik_nomi}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+        {% else %}
+            <li class="no-data">{{"Yangiliklar shunchaki qo'yilmagan!"|_}}</li>
+        {% endfor %}
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+        {% if records.lastPage > 1 %}
+    <ul class="pagination">
+        {% if records.currentPage > 1 %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+        {% endif %}
+
+        {% for page in 1..records.lastPage %}
+            <li class="{{ records.currentPage == page ? 'active' : null }}">
+                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if records.lastPage > records.currentPage %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+</div>

@@ -1,0 +1,47 @@
+[newsPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "Отсутсвие постов"
+sortOrder = "published_at desc"
+postFeatured = 0
+postPage = "news/post"
+==
+{% set posts = newsPosts.posts %}
+
+<section class="tg-sectionspace tg-haslayout" style="padding: 50px 0;">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="tg-sectionhead">
+								<h2><span>Universitet kutubxonalaridagi</span>Yangiliklar va E'lonlar</h2>
+								<a class="tg-btn" href="javascript:void(0);">View All</a>
+							</div>
+						</div>
+						<div id="tg-postslider" class="tg-postslider tg-blogpost owl-carousel">
+							   {% for post in posts %}
+                            <article class="item tg-post">
+								 {% if post.image %}<figure><a href="{{ post.url }}"><img src="{{ post.image|media }}" alt="{{ post.title }}"></a></figure>{% endif %}
+								<div class="tg-postcontent">
+									<ul class="tg-bookscategories">
+										<li><a href="javascript:void(0);">{{ post.category.name }}</a></li>										
+									</ul>
+                                    {% if post.featured == 1%}
+									<div class="tg-themetagbox"><span class="tg-themetag">{{"Tafsiya etiladi"|_}}</span></div>
+                                    {% endif %}
+									<div class="tg-posttitle">
+										<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+									</div>
+									<span class="tg-bookwriter">{{"Joyladi"|_}}: <a href="javascript:void(0);">{{ post.user.first_name }}</a></span>
+									<ul class="tg-postmetadata">
+										{# <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li> #}
+										<li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>{{ post.statistics }}</i></a></li>
+									</ul>
+								</div>
+							</article>
+                             {% else %}
+                            <span class="post-nodata">{{ noPostsMessage }}</span>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</section>
