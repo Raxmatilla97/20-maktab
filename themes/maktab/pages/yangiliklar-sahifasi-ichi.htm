@@ -1,0 +1,42 @@
+title = "Yangiliklar sahifasi ichi"
+layout = "maktab-layout"
+url = "/yangiliklar-detal/:yangilik_manzili?"
+
+[builderDetails]
+modelClass = "Shohrux\Yangiliklar\Models\Yangilik"
+identifierValue = "{{ :yangilik_manzili }}"
+modelKeyColumn = "yangilik_manzili"
+displayColumn = "title"
+notFoundMessage = "Yangilik topilmadi"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+<main class="container">
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h1 class="border-bottom pb-2 mb-0">{{record.yangilik_nomi}}</h1>
+
+        {% if record %}
+             <img class="card-img-top center"  alt="Thumbnail" style="width: 80%; display: block;" src="{{record.img.path| resize (740, 510 , { mode: 'crop', quality: '70' })}}" data-holder-rendered="true">
+           {{record.content|raw}}
+          <br>
+          <a href="{{record.file|media}}">Yuklab olish</a>
+           <small class="text-muted">{{record.created_at|date("d-M-Y")}}</small>
+        {% else %}
+            {{ notFoundMessage }}
+        {% endif %}
+
+        <style>
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 50%;
+        }
+        </style>
+   
+  </div>
+
+  
+</main>

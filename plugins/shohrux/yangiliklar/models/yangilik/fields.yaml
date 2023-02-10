@@ -16,12 +16,19 @@ fields:
         mode: datetime
         span: auto
         type: datepicker
-    images_media:
-        label: 'Images media'
+    img:
+        label: 'Yangilik surati'
         mode: image
         imageWidth: '200'
+        fileTypes: 'png,jpg'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        maxFilesize: '2'
+        maxFiles: '1'
         span: auto
-        type: mediafinder
+        type: fileupload
 tabs:
     fields:
         content:
@@ -30,3 +37,10 @@ tabs:
             span: full
             type: richeditor
             tab: 'Asosiy yangiliklar qismi'
+        file:
+            label: 'Yangilik fayili'
+            mode: file
+            imageWidth: '200'
+            span: full
+            type: mediafinder
+            tab: 'Fayl yuklash'

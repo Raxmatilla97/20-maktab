@@ -1,6 +1,6 @@
-title = "Yangiliklar"
+url = "/yangiliklar/:page?"
 layout = "maktab-layout"
-url = "/yangiliklar"
+title = "Yangiliklar"
 
 [builderList]
 modelClass = "Shohrux\Yangiliklar\Models\Yangilik"
@@ -10,6 +10,7 @@ displayColumn = "yangilik_nomi"
 noRecordsMessage = "No records found"
 detailsPage = "-"
 detailsUrlParameter = "id"
+recordsPerPage = 10
 pageNumber = "{{ :page }}"
 sortColumn = "created_at"
 sortDirection = "desc"
@@ -39,15 +40,16 @@ sortDirection = "desc"
       {% for record in records %}
       <div class="col-md-4">
         <div class="card mb-4 box-shadow">
-          <img class="card-img-top"  alt="Thumbnail" style="height: 225px; width: 100%; display: block;" src="{{ record.images_media|media }}" data-holder-rendered="true">
+        
+          <img class="card-img-top"  alt="Thumbnail" style="height: 225px; width: 100%; display: block;" src="{{record.img.path}}" data-holder-rendered="true">
           <div class="card-body">
             <p style="margin-left: 0px; margin-top: 10px;" class="card-text">{{record.yangilik_nomi}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{'/yangiliklar-detal'}}/{{record.yangilik_manzili}}">Sahifaga kirish</button>
+              
               </div>
-              <small class="text-muted">9 mins</small>
+              <small class="text-muted">{{record.created_at|date("d-M-Y")}}</small>
             </div>
           </div>
         </div>
@@ -60,12 +62,6 @@ sortDirection = "desc"
     </div>
   </div>
 </div>
-
-
-
-
-
-
         {% if records.lastPage > 1 %}
     <ul class="pagination">
         {% if records.currentPage > 1 %}

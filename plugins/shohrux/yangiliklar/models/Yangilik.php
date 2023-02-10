@@ -20,4 +20,13 @@ class Yangilik extends Model
      */
     public $rules = [
     ];
+
+    // Bu yerda file uploadning model qismini chaqiramiz, barchasi shu modeldan keladi
+    public $attachOne  = [
+        'img' => 'System\Models\File',    
+
+    ];
+
+
+
 }
